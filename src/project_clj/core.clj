@@ -1,7 +1,6 @@
 (ns project-clj.core
   (:refer-clojure :exclude [get get-in])
-  (:require [project-clj.sandbox :as sandbox]
-            [project-clj.internal :as internal]))
+  (:require [project-clj.internal :as internal]))
 
 
 
