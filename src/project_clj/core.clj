@@ -1,6 +1,21 @@
-(ns project-clj.core)
+(ns project-clj.core
+  (:refer-clojure :exclude [get get-in])
+  (:require [project-clj.sandbox :as sandbox]
+            [project-clj.internal :as internal]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+
+
+
+(defmacro get [k & [else]]
+  (list 'quote
+        (clojure.core/get
+          (internal/get-project-from-sandbox) k else)))
+
+(defmacro get-in [ks & [else]]
+  (list 'quote
+        (clojure.core/get-in
+          (internal/get-project-from-sandbox) ks else)))
+
+
+
+
