@@ -2,15 +2,14 @@
   (:require [project-clj.sandbox :as sandbox]))
 
 
-
 (defmacro get-project-from-sandbox []
   (let [prev-ns *ns*]
     (in-ns 'project-clj.sandbox)
     (load-file "project.clj")
-    (let [copy-of-project sandbox/project]
+    (let [copy-of-project-map sandbox/project]
       (alter-var-root #'sandbox/project (fn [_] nil))
       (set! *ns* prev-ns)
-      (list 'quote copy-of-project))))
+      (list 'quote copy-of-project-map))))
 
 
 
