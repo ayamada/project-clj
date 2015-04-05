@@ -12,36 +12,48 @@ Refer own `project.clj`
 
 ## Usage
 
-~~~
+```sh
+$ cat project.clj
+(def the-url "http://example.com/")
+(defproject com.example/foobar "0.1.0-SNAPSHOT"
+  :url ~the-url
+  :license {:name "Unlicense"
+            :url "http://unlicense.org/UNLICENSE"}
+  ...)
+```
+
+```clojure
 (ns xxx.yyy
   (:require [project-clj.core :as project-clj]))
 
-(project-clj/get :name) ; => "project-clj"
+(project-clj/get :name) ; => "foobar"
 
-(project-clj/get :group) ; => "jp.ne.tir"
+(project-clj/get :group) ; => "com.example
 
 (project-clj/get :version) ; => "0.1.0-SNAPSHOT"
+
+(project-clj/get :url) ; => "http://example.com/"
 
 (project-clj/get-in [:license :url]) ; => "http://unlicense.org/UNLICENSE"
 
 (project-clj/get :abc) ; => nil
 
-(project-clj/get :abc :fallback) ; => :fallback
+(project-clj/get :abc "fallback") ; => "fallback"
 
-(project-clj/keys) ; => (...) ; all keys
+(project-clj/keys) ; => (:name :group :version :url :license ...)
 
 (project-clj/get-in []) ; => {...} ; all in one, BUT BE HANDLE WITH CARE !!!
 
-~~~
+```
 
 for cljs:
 
-~~~
+```clojure
 (ns xxx.yyy
   (:require-macros [project-clj.core :as project-clj]))
 
 ...
-~~~
+```
 
 
 ## Notice
