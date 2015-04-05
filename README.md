@@ -12,7 +12,7 @@ Refer own `project.clj`
 
 ## Usage
 
-```clojure
+```sh
 $ cat project.clj
 (def the-url "http://example.com/")
 (defproject com.example/foobar "0.1.0-SNAPSHOT"
