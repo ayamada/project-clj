@@ -56,23 +56,23 @@ for cljs:
   コンパイル時に実際の値に置換され、
   その後は `project.clj` がなくても機能します。
   - コンパイル時埋め込みである為、もし`project.clj`内の参照エントリの値を
-    変更した際には、`lein clean`を実行して、古い値が埋め込まれた`*.class`を
-    削除した方がよいでしょう。
+    変更した際には`lein clean`を実行して、古い値が埋め込まれた`*.class`を
+    明示的に削除した方がよいでしょう。
 
 - Includes internal entries of leiningen.
 
-- leiningen内部用の値が含まれています。
+- leiningenが内部で利用する為用の値が含まれています。気にしないでください。
 
 - For safety, replace from fn to symbol in value.
   If you want to get raw fn,
-  you can use `get*` `get-in*` instead of `get` `get-in`.
+  you can use `get*` and `get-in*` instead of `get` and `get-in`.
   But, raw fn causes compile error in cljs.
 
-- project.cljのエントリ中にfnが含まれていた場合、安全の為に
+- `project.clj`のエントリ中にfnが含まれていた場合、安全の為に
   そのfnは単なるシンボルへと置換されます。
-  どうしても生fnの取得を行う必要がある場合は `get` `get-in` の代わりに
-  `get*` `get-in*` を使ってください。
-  ただし、生fnはcljsでは当然コンパイルエラーになります。
+  どうしても生fnの取得を行う必要がある場合は `get` と `get-in` の代わりに
+  `get*` と `get-in*` を使ってください。
+  ただし、生fnはcljs内では当然コンパイルエラーになります。
 
 
 ## TODO
