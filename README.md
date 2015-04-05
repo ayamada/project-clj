@@ -61,7 +61,7 @@ for cljs:
 - `project-clj.core/get` and `project-clj.core/get-in` are macros.
   These are replaced to actual values in compile time.
   These values are NOT depend on `project.clj` anymore.
-  - If you change to referred entries in `profile.clj`,
+  - If you changed to referred entries in `profile.clj`,
     you may do `lein clean` for clean old values in `*.class`.
 
 - `project-clj.core/get` と `project-clj.core/get-in` はマクロです。
@@ -73,7 +73,7 @@ for cljs:
 
 - Includes internal entries for leiningen. Don't care, please.
 
-- leiningenの内部利用値が含まれています。気にしないでください。
+- leiningen用の内部値が含まれています。気にしないでください。
 
 - For safety, replace from fn to symbol in value.
   If you want to get raw fn,
