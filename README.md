@@ -28,7 +28,7 @@ Refer own `project.clj`
 
 (project-clj/get :abc :fallback) ; => :fallback
 
-(project-clj/keys) ; => (...)
+(project-clj/keys) ; => (...) ; all keys
 
 (project-clj/get-in []) ; => {...} ; all in one, BUT BE HANDLE WITH CARE !!!
 
@@ -59,7 +59,7 @@ for cljs:
     変更した際には`lein clean`を実行して、古い値が埋め込まれた`*.class`を
     明示的に削除した方がよいでしょう。
 
-- Includes internal entries of leiningen.
+- Includes internal entries for leiningen. Don't care, please.
 
 - leiningenが内部で利用する為用の値が含まれています。気にしないでください。
 
