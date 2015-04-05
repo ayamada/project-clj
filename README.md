@@ -7,7 +7,7 @@ Refer own `project.clj`
 
 ## Install
 
-- https://clojars.org/jp.ne.tir/project-clj
+[![Clojars Project](http://clojars.org/jp.ne.tir/project-clj/latest-version.svg)](http://clojars.org/jp.ne.tir/project-clj)
 
 
 ## Usage
@@ -49,10 +49,15 @@ for cljs:
 - `project-clj.core/get` and `project-clj.core/get-in` are macros.
   These are replaced to actual values in compile time.
   These values are NOT depend on `project.clj` anymore.
+  - If you change to referred entries in `profile.clj`,
+    you may do `lein clean` for clean old values in `*.class`.
 
 - `project-clj.core/get` と `project-clj.core/get-in` はマクロです。
   コンパイル時に実際の値に置換され、
   その後は `project.clj` がなくても機能します。
+  - コンパイル時埋め込みである為、もし`project.clj`内の参照エントリの値を
+    変更した際には、`lein clean`を実行して、古い値が埋め込まれた`*.class`を
+    削除した方がよいでしょう。
 
 - Includes internal entries of leiningen.
 
