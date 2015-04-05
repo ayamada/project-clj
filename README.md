@@ -61,7 +61,7 @@ for cljs:
 
 - Includes internal entries for leiningen. Don't care, please.
 
-- leiningenが内部で利用する為用の値が含まれています。気にしないでください。
+- leiningenの内部利用値が含まれています。気にしないでください。
 
 - For safety, replace from fn to symbol in value.
   If you want to get raw fn,
