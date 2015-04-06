@@ -39,11 +39,6 @@ $ cat project.clj
 (project-clj/get :abc) ; => nil
 
 (project-clj/get :abc "fallback") ; => "fallback"
-
-(project-clj/keys) ; => (:name :group :version :url :license ...)
-
-(project-clj/get-in []) ; => {...} ; all in one, BUT BE HANDLE WITH CARE !!!
-
 ```
 
 for cljs:
@@ -71,20 +66,33 @@ for cljs:
     変更した際には`lein clean`を実行して、古い値が埋め込まれた`*.class`を
     明示的に削除した方がよいでしょう。
 
-- Includes internal entries for leiningen. Don't care, please.
-
-- leiningen用の内部値が含まれています。気にしないでください。
-
 - For safety, replace from fn to symbol in value.
-  If you want to get raw fn,
-  you can use `get*` and `get-in*` instead of `get` and `get-in`.
-  But, raw fn causes compile error in cljs.
 
 - `project.clj`のエントリ中にfnが含まれていた場合、安全の為に
   そのfnは単なるシンボルへと置換されます。
-  どうしても生fnの取得を行う必要がある場合は `get` と `get-in` の代わりに
-  `get*` と `get-in*` を使ってください。
-  ただし、生fnはcljs内では当然コンパイルエラーになります。
+
+- Includes internal entries for leiningen.
+
+- leiningen用の内部値が含まれています。
+
+- You should not write a code like `(:url (project-clj/get :license))`.
+  It expand to
+  `(:url {:name "Unlicense", :url "http://unlicense.org/UNLICENSE"})`.
+  - This code should be `(project-clj/get-in [:license :url])`.
+    It expand to `"http://unlicense.org/UNLICENSE"`.
+
+- `project.clj`には、上記のleiningen用の内部値も含め、
+  「不特定多数に公開されてほしくない値」が含まれる可能性があります。
+  余分な情報が`*.class`に含まれてしまわないように注意してください。
+  - 例えば `(:url (project-clj/get :license))` は
+    `(:url {:name "Unlicense", :url "http://unlicense.org/UNLICENSE"})`
+    のように展開される為、別に使う必要のない `:name` のエントリまで
+    `*.class` に含まれてしまいます。
+    これは動作には全く問題ありませんが、dumpする事で情報を読めてしまいます。
+    なるべく `(project-clj/get-in [:license :url])` のように指定してください。
+    - この例では別にセキュリティ的な問題にはならないですが、
+      プライベートリポジトリの設定、パスワード類、ビルドPCのpath情報等が
+      流出しうるでしょう。
 
 
 ## TODO
