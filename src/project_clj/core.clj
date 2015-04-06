@@ -11,6 +11,7 @@
           (clojure.core/get (internal/get-project-from-sandbox) k else))))
 
 (defmacro get-in [ks & [else]]
+  (assert (not (empty? ks)) "project-clj.core/get-in must need keys")
   (list 'quote
         (internal/sanitize
           (clojure.core/get-in (internal/get-project-from-sandbox) ks else))))
@@ -28,6 +29,7 @@
         (clojure.core/get (internal/get-project-from-sandbox) k else)))
 
 (defmacro get-in* [ks & [else]]
+  (assert (not (empty? ks)) "project-clj.core/get-in* must need keys")
   (list 'quote
         (clojure.core/get-in (internal/get-project-from-sandbox) ks else)))
 
