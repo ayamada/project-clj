@@ -6,19 +6,16 @@
 (defn fn->symbol [f]
   (symbol (.getName (class f))))
 
-;;; cljsにコンパイル済fnを埋め込む事はできないので、シンボル化する
-;;; (cljではコンパイル済fnがあっても問題ないので、
-;;; この処理を入れるかは迷うところだが…)
-;;; またleiningenではmetaにfnを含める処理があるので、
+;;; コンパイル済fnを即値として埋め込む事はできないので、シンボル化する
+;;; またleiningenではmetaにfnを含ませる処理があるので、
 ;;; meta内もsanitizeする必要がある
 (defn sanitize [obj]
   (walk/prewalk (fn [e]
                   (if (fn? e)
                     (fn->symbol e)
-                    (let [m (meta e)]
-                      (if m
-                        (with-meta e (sanitize m))
-                        e))))
+                    (if-let [m (meta e)]
+                      (with-meta e (sanitize m))
+                      e)))
                 obj))
 
 
