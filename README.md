@@ -104,6 +104,9 @@ for cljs:
 
 ## ChangeLog
 
+- 0.1.1 (2014-04-09)
+    - Inhibit to get all by `(get-in [])`
+
 - 0.1.0 (2014-04-05)
     - Initial release
 
