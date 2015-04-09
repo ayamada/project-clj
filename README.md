@@ -28,7 +28,7 @@ $ cat project.clj
 
 (project-clj/get :name) ; => "foobar"
 
-(project-clj/get :group) ; => "com.example
+(project-clj/get :group) ; => "com.example"
 
 (project-clj/get :version) ; => "0.1.0-SNAPSHOT"
 
