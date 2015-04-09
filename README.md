@@ -101,10 +101,6 @@ for cljs:
 
 - 今のところ `lein with-profile ...` の反映はされません。
 
-- `:dependencies` が例えば `[[org.clojure/clojure "1.6.0"] [leiningen-core/leiningen-core "2.5.1"]]` だった際に、leiningenが(おそらくmetaを付与する関係で)勝手に値を `([org.clojure/clojure "1.6.0"] [leiningen-core/leiningen-core "2.5.1"])` にしてしまう為、 `(project-clj.core/get-in [:dependencies 0])` 等で取り出せなくなってしまうのをどうにかする
-    - 元のデータ型(vecかseqか)は既に失われてしまっていて確認できない…
-    - 現在は内部で `clojure.core/get-in` を使っており、これが「seqからの数値指定取得に対応していない」のが原因なので、これを自前で実装し直して、seqからの数値指定取得できるようにして対応する事。
-
 
 ## ChangeLog
 
