@@ -109,7 +109,7 @@ for cljs:
 ## ChangeLog
 
 - 0.1.1 (2014-04-09)
-    - Inhibit to get all by `(project-clj.core/get-in [])` for safety
+    - Inhibit to get all-in-one by `(project-clj.core/get-in [])` for safety
 
 - 0.1.0 (2014-04-05)
     - Initial release
