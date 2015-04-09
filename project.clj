@@ -1,4 +1,4 @@
-(defproject jp.ne.tir/project-clj "0.1.2"
+(defproject jp.ne.tir/project-clj "0.1.3-SNAPSHOT"
   :description "Refer own project.clj"
   :url "https://github.com/ayamada/project-clj"
   :license {:name "Unlicense"
