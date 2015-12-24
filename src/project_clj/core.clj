@@ -26,19 +26,24 @@
                 not-found))))))))
 
 
+(def ^:private not-found-mark (gensym))
+
 
 
 
 (defmacro get [k & [else]]
-  (list 'quote
-        (internal/sanitize
-          (clojure.core/get (internal/get-project-from-sandbox) k else))))
+  (let [r (clojure.core/get
+            (internal/get-project-from-sandbox) k not-found-mark)]
+    (if (= not-found-mark r)
+      else
+      (list 'quote (internal/sanitize r)))))
 
 (defmacro get-in [ks & [else]]
   (assert (not (empty? ks)) "project-clj.core/get-in must need keys")
-  (list 'quote
-        (internal/sanitize
-          (my-get-in (internal/get-project-from-sandbox) ks else))))
+  (let [r (my-get-in (internal/get-project-from-sandbox) ks not-found-mark)]
+    (if (= not-found-mark r)
+      else
+      (list 'quote (internal/sanitize r)))))
 
 (defmacro keys []
   (list 'quote
@@ -49,13 +54,18 @@
 
 
 (defmacro get* [k & [else]]
-  (list 'quote
-        (clojure.core/get (internal/get-project-from-sandbox) k else)))
+  (let [r (clojure.core/get
+            (internal/get-project-from-sandbox) k not-found-mark)]
+    (if (= not-found-mark r)
+      else
+      (list 'quote r))))
 
 (defmacro get-in* [ks & [else]]
-  (assert (not (empty? ks)) "project-clj.core/get-in* must need keys")
-  (list 'quote
-        (my-get-in (internal/get-project-from-sandbox) ks else)))
+  (assert (not (empty? ks)) "project-clj.core/get-in must need keys")
+  (let [r (my-get-in (internal/get-project-from-sandbox) ks not-found-mark)]
+    (if (= not-found-mark r)
+      else
+      (list 'quote r))))
 
 
 
