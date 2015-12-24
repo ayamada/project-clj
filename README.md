@@ -104,6 +104,10 @@ for cljs:
 
 ## ChangeLog
 
+- 0.1.3 (2015-12-25)
+    - Fix for optional fallback values
+    - Bump up version of dependencies
+
 - 0.1.2 (2014-04-10)
     - Allow `get-in` to get from seq by number
 
