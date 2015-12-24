@@ -3,5 +3,5 @@
   :url "https://github.com/ayamada/project-clj"
   :license {:name "Unlicense"
             :url "http://unlicense.org/UNLICENSE"}
-  :dependencies [[org.clojure/clojure "1.6.0"]
-                 [leiningen-core "2.5.1"]])
+  :dependencies [[org.clojure/clojure "1.7.0"]
+                 [leiningen-core "2.5.3"]])
