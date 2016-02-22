@@ -26,12 +26,19 @@
                 not-found))))))))
 
 
+(defn- keyword-or-index? [v]
+  (or
+    (keyword? v)
+    (and (integer? v) (<= 0 v))))
+
+
 (def ^:private not-found-mark (gensym))
 
 
 
 
 (defmacro get [k & [else]]
+  (assert (keyword? k) "argument must be bare keyword")
   (let [r (clojure.core/get
             (internal/get-project-from-sandbox) k not-found-mark)]
     (if (= not-found-mark r)
@@ -39,6 +46,8 @@
       (list 'quote (internal/sanitize r)))))
 
 (defmacro get-in [ks & [else]]
+  (assert (every? keyword-or-index? ks)
+          "argument must be list of bare keyword or index number")
   (assert (not (empty? ks)) "project-clj.core/get-in must need keys")
   (let [r (my-get-in (internal/get-project-from-sandbox) ks not-found-mark)]
     (if (= not-found-mark r)
@@ -54,6 +63,7 @@
 
 
 (defmacro get* [k & [else]]
+  (assert (keyword? k) "argument must be bare keyword")
   (let [r (clojure.core/get
             (internal/get-project-from-sandbox) k not-found-mark)]
     (if (= not-found-mark r)
@@ -61,7 +71,9 @@
       (list 'quote r))))
 
 (defmacro get-in* [ks & [else]]
-  (assert (not (empty? ks)) "project-clj.core/get-in must need keys")
+  (assert (every? keyword-or-index? ks)
+          "argument must be list of bare keyword or index number")
+  (assert (not (empty? ks)) "project-clj.core/get-in* must need keys")
   (let [r (my-get-in (internal/get-project-from-sandbox) ks not-found-mark)]
     (if (= not-found-mark r)
       else
