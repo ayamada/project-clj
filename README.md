@@ -104,6 +104,10 @@ for cljs:
 
 ## ChangeLog
 
+- 0.1.4 (2016-02-22)
+    - Add more asserts for check args
+    - Bump up version of dependencies
+
 - 0.1.3 (2015-12-25)
     - Fix for optional fallback values
     - Bump up version of dependencies
