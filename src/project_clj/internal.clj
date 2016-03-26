@@ -22,7 +22,11 @@
 (defmacro get-project-from-sandbox []
   (let [prev-ns *ns*]
     (in-ns 'project-clj.sandbox)
-    (load-file "project.clj")
+    (try
+      (load-file "project.clj")
+      (catch java.io.FileNotFoundException e
+        (binding [*out* *err*]
+          (println "Warning: project.clj not found"))))
     (let [copy-of-project-map sandbox/project]
       (alter-var-root #'sandbox/project (fn [_] nil))
       (set! *ns* prev-ns)
