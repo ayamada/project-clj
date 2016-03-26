@@ -104,6 +104,9 @@ for cljs:
 
 ## ChangeLog
 
+- 0.1.5 (2016-03-26)
+    - Inhibit java.io.FileNotFoundException when not found project.clj
+
 - 0.1.4 (2016-02-22)
     - Add more asserts for check args
     - Bump up version of dependencies
