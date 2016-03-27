@@ -19,7 +19,7 @@
                 obj))
 
 
-(defmacro get-project-from-sandbox []
+(defn get-project-from-sandbox []
   (let [prev-ns *ns*]
     (in-ns 'project-clj.sandbox)
     (try
@@ -30,7 +30,7 @@
     (let [copy-of-project-map sandbox/project]
       (alter-var-root #'sandbox/project (fn [_] nil))
       (set! *ns* prev-ns)
-      (list 'quote copy-of-project-map))))
+      copy-of-project-map)))
 
 
 
