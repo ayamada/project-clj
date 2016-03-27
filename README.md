@@ -104,6 +104,9 @@ for cljs:
 
 ## ChangeLog
 
+- 0.1.6 (2016-03-27)
+    - Fix phase to read project.clj
+
 - 0.1.5 (2016-03-26)
     - Inhibit java.io.FileNotFoundException when not found project.clj
 
