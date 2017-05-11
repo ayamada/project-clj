@@ -104,6 +104,9 @@ for cljs:
 
 ## ChangeLog
 
+- 0.1.7 (2017-05-12)
+    - Bump up version of dependencies
+
 - 0.1.6 (2016-03-27)
     - Fix phase to read project.clj
 
